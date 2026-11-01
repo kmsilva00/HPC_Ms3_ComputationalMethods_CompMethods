@@ -1,0 +1,9 @@
+id,type,x,y
+VIN,power_in,100,240
+L1,inductor,300,160
+J1,junction,400,160
+SW1,gate,400,360
+D1,diode,500,160
+J2,junction,600,160
+C1,capacitor,600,360
+LOAD,resistor,800,240
