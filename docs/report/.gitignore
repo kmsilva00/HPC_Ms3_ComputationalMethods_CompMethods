@@ -1,4 +1,5 @@
 # output file
+!*
 **/*.pdf
 build/**
 gnuplottex/**
