@@ -1,0 +1,107 @@
+\ProvidesPackage{LayoutFile}
+
+%%% PAGE LAYOUT %%%
+\usepackage{marginnote} % What the name says
+% ARTICLE:
+%\usepackage[a4paper, twoside, includeheadfoot, margin=2.54cm]{geometry}
+%\usepackage[a4paper, twoside, includeheadfoot]{geometry}
+%\usepackage[a4paper, includeheadfoot, left=40pt, right=40pt, top=32pt, bottom=32pt]{geometry}
+%\usepackage[a4paper, twoside, includeheadfoot, textwidth=15.92cm, textheight=24.62cm]{geometry}
+%\usepackage[includeheadfoot, top=48pt, bottom=48pt, left=2cm, right=6cm, marginparwidth=5cm]{geometry} % For reviewing
+% EDINBURGH DISSERTATION:
+%\usepackage[left=4cm, right=1in, top=1in, bottom=25.4mm]{geometry}
+%\usepackage[a4paper, top=48pt, bottom=48pt]{geometry}
+\usepackage[a4paper, includeheadfoot, top=48pt, bottom=48pt]{geometry}
+% GENERIC REPORT:
+%\usepackage[a4paper, twoside, includeheadfoot, right=4cm, left=1in, top=48pt, bottom=48pt]{geometry}
+% OBSOLETE: \usepackage{a4wide}, \usepackage{fullpage} % smaller edge space
+\usepackage{layout}
+
+% HEADER AND FOOTER
+\usepackage{fancyhdr} % customize the headers and footers
+
+% PAGE ORIENTATION
+\usepackage{pdflscape} % Landscape pages
+
+% COLUMNS
+\usepackage{multicol} % double column articles, triple column articles e.t.c.
+\setlength\columnsep{12pt}
+
+% MARGINS
+\usepackage{chngpage} % allows for temporary adjustment of side margins
+
+% LINE SEPARATION
+\usepackage{setspace} % Easy line separation and other spacing options
+
+% EXTRA CONFIGURATIONS
+%\makeindex
+%\makeglossaries
+
+%%% DOCUMENT STRUCTURE %%%
+% Normal page style
+%\pagestyle{fancy}
+%\fancyhf{}
+%\rhead{\thepage}
+%\lhead{\nouppercase{\leftmark} - \nouppercase{\rightmark}}
+%\renewcommand{\headrulewidth}{0pt}
+%
+%%Redefines plain page-style
+%\fancypagestyle{plain}{
+%\fancyhf{}
+%\rhead{\thepage}
+%\renewcommand{\headrulewidth}{0pt}
+%\renewcommand{\footrulewidth}{0pt}}
+% TABLE OF CONTENTS
+% \setcounter{secnumdepth}{3}
+% \setcounter{tocdepth}{3}
+
+% Normal page style
+%\pagestyle{fancy}
+%\fancyhf{}
+%\fancyfoot[RO,LE]{\thepage}
+%\fancyfoot[RE]{\slshape \thedocument}
+%\fancyfoot[LO]{\slshape \thedocument}
+%\renewcommand{\headrulewidth}{0pt}
+
+% Redefines plain page-style
+%\fancypagestyle{plain}{
+%\fancyhf{}
+%\fancyfoot[C]{\thepage}
+%\renewcommand{\headrulewidth}{0pt}
+%\renewcommand{\footrulewidth}{0pt}}
+
+% MATH DISPLAY
+\allowdisplaybreaks
+%\numberwithin{equation}{section}
+
+% MULTICOL FIGURE
+% Note: The wrapfig environment works with multicol!
+%%% OLD 1 %%%
+\newenvironment{Figure}
+	{\par\medskip\noindent\minipage{\linewidth}}
+	{\endminipage\par\medskip}
+\newenvironment{SubFigures}
+	{\setcounter{figure}{\value{figure}+1}}
+	{\setcounter{figure}{\value{figure}-1}}
+% Usage:
+%\begin{Figure}
+%	\centering
+%	\includegraphics[width=\linewidth]{foo}
+%	\captionof{figure}{my caption of the fugure}
+%\end{Figure}
+%%% OLD 2 %%%
+% Note: mulicol works! Just not good enough.
+%\newcommand\myfigure[5]{%
+%  \ifdim#2>.8\linewidth
+%    {%
+%      \centering
+%      \includegraphics[width=#3]{#4}%
+%      \captionof{figure}{#5}%
+%    }%
+%  \else
+%  \begin{wrapfigure}{#1}{#2}
+%    \includegraphics[width=#3]{#4}
+%    \caption{#5}
+%  \end{wrapfigure}
+%  \fi
+%}

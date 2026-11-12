@@ -1,0 +1,348 @@
+% LaTeX style file for the dissertation
+\ProvidesPackage{StyleFile}
+
+%%% LaTeX %%%
+\usepackage{etex} % Extended package memory allocation for resolving conflicts
+\usepackage{ifthen} % conditionals
+%\usepackage{calc} % The calc package reimplements the LaTeX commands \setcounter, \addtocounter, \setlength, and \addtolength.  Instead of a simple value, these commands now accept an infix notation expression.
+
+% NEED:  l3­pack­ages, I3kernel
+%%% COMPILING %%%
+\usepackage{subfiles}
+% \usepackage{newclude} % Better control over the inclusion of tex files;
+%  \include*{<file>}
+% now is == 
+% \begingroup
+% \let\clearpage\relax
+% \include{<file>}
+% \endgroup
+% or ==
+% {
+% \let\clearpage\relax
+% \include{<file>}
+% }
+\usepackage{xparse} % Allows the declaration of environments with arguments (DeclareDocumentEnvironment), etc.
+
+%%% LANGUAGE: English %%%
+\usepackage[english]{babel} % NOTE: Must be before encoding!
+% Encoding
+\usepackage[utf8]{inputenc} % ensures that all input characters are encoded int 8bit (some encodings can be selected manually, see bottom left)
+\usepackage[T1]{fontenc} % uses 8bit encoding in the latex output pdf
+
+%%% LANGUAGE: English with polytonic/modern Greek as secondary %%%
+%\usepackage[greek,english]{babel}
+%\usepackage[utf8x]{inputenc}
+%\usepackage[LGR,T1]{fontenc}
+
+% APPENDIX E.T.C. EXTRA CONFIGURATIONS
+\usepackage{appendix} % Appendix configurations
+
+%%% GRAPHICS %%%
+\usepackage{graphicx} % to include jpeg or pdf pictures, and manipulate graphical items
+\usepackage{float} % useful in crating boxes for equation and placing images
+\usepackage{epstopdf} % to insert postscript vector graphics, etc.
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{compatibility=false}
+\usepackage{wrapfig}
+\usepackage[vflt]{floatflt} % Similar to wrapfig, but less robust to page breaks. vlft (default option, can change in tex): right in a paragraph on odd-nubered pages, and to the left on even-numbered pages
+\usepackage{pdfpages} % Similar to wrapfig
+\usepackage{adjustbox} % to resize tikz pictures: The main feature is the general \ad­just­box macro which ex­tends the "key=value" inter­face of \includegraphics from the graphics pack­age and applies it to general text content.
+% BOXES
+%\usepackage{slashbox} % package draws a figure with two labels on the sides of an oblique line
+%\usepackage{fancybox} % boxes for text and other items; especially useful for boxed pseudocode
+
+%%% TEXT FORMATING %%%
+\usepackage{color} % color text e.t.c.
+%\usepackage{ulem} % the ulem package provides various types of underlining
+%\usepackage{slashbox} % package draws a figure with two labels on the sides of an oblique line
+% FORMATED CODE
+\usepackage{listings} % Importing code/formated text
+% PSEUDOCODE & ALGORITHMS
+\usepackage{algpseudocode, algorithm} % algorithms and their wrapper
+\algblockdefx[sub-function]{SubFunctions}{EndSubFunctions}{\textbf{sub-functions}}{\textbf{end sub-functions}} % Subfunctions
+%\algblockdefx[sub-function]{SubFunctions}{EndSubFunctions}[2]{\textbf{sub-functions} \textsc{#1}(#2)}{\textbf{end sub-functions}}
+\MakeRobust{\Call}
+%\usepackage{algorithmic} % old algorithm style
+%\usepackage{pseudocode} % a more descriptive style of pseudocode
+\usepackage{verbatim} % writes whatever you type, useful or algorithms e.t.c.
+\usepackage{fancyvrb} % enhances verbatim functionalities; BVerbatim: can center verbatim groups
+% ELABORATE LIST CONFIGURATION
+% Using the default commands
+% 1. Additional space between items: \setlength{\itemsep}{0pt}
+% 2. Additional space between list and paragraph: \setlength{\parskip}{0pt}
+\usepackage{mdwlist} % description-like environments with elaborate text, control vertical spacing in list environments, suspending and resuming enumerated lists (also built in enumitem)
+\usepackage{paralist} % Same as enumerate but has options for in-line lists as well (\begin{inparaenum}[\itshape a\upshape)])
+%\usepackage{enumerate}
+\usepackage{enumitem} % More comprehensive implementation of enumerate, command has the form: \begin{enumerate}[label=\bfseries (\roman*)] (or Roman)
+
+%%% TABLE FORMATING %%%
+\usepackage{rotating} % the package rotating gives you the possibility to rotate any object including text of an arbitrary angle
+\usepackage{bigstrut} % Horizontal spacing of text inside tables
+\usepackage{multirow} % Activates the multirow enviroment, for merging shells over multiple rows in tables
+\usepackage{booktabs} % Professionally typeset books and journals simple table style
+%\usepackage{supertabular} % tables like tabular's that can extend over a page break
+\usepackage{diagbox} % entries spitted diagonally
+\usepackage{csvsimple} % Import data and CSV to autogenerate tables; read an executed line-by-line.
+\usepackage{readarray} % Import data from CSV, all data available, no tab separator.
+
+%%% MATHEMATICS AND SPECIAL FONTS %%%
+\usepackage{amsmath} % Be aware for classes with the mh bundle's mathtools
+
+% MATH ENVIRONMENTS
+\usepackage{amsthm, amssymb, amsfonts}
+%\usepackage{mathrsfs} % \mathscr : curled calligraphic fonts [now defined in the ams packages; deactivate to avoid double definition error]
+%\usepackage{amsmath, amssymb, amsfonts, amsthm} % See also new px fonts below 
+	% amsfonts: blackboard bold symbols e.g. for real numbers
+	% AMSTHM: THEOREMS And other
+	% amsmath: equation and other
+	% latexsym: The latexsym package provides 11 math symbols that were originally defined in LaTeX2.09 but are no longer defined in the New Font Selection Scheme. These symbols are also provided by the amsfonts and amssymb packages. Because SWP and SW call the amsfonts packages automatically, ordinarily you don't need to add the latexsym package to your document to obtain the symbols.
+
+% FONTS
+%\usepackage{bm} % The bm pack­age defines a command \bm which makes its argument bold. The argument may be any maths object from a single symbol to an expression. This is closely re­lated to the specification of the \boldsymbol command in AMS-LATEX, but \bm is rather more careful in the way it does things.
+	%% AVOID: There are bugs
+	%% See: http://tex.stackexchange.com/questions/180680/conflict-between-subfiles-bm-and-newtxtext
+%\usepackage{pxfonts} % more mathematical fonts; nice empty set possible
+	%% Out of date, replaced by amsfonts and the 2 newpx packages
+\usepackage{newpxtext}
+\usepackage{newpxmath} % replaces the amsfonts (personally I prefer it for logic theory and amsmath for the rest); NOTE: incompatible with 'breqn'
+
+% MATH PACKAGES
+\usepackage{stackrel} % Better control in defining operators like lim
+\usepackage{relsize} % flexibly change math font size, e.g. (\mathlarger{})^n
+\usepackage{bussproofs} % writing deduction rules
+\usepackage{siunitx} % SI units
+
+%% Install the mh Bundle for these packages
+\usepackage{mhsetup} % Provides utilities for the mh bundle
+\usepackage{mathtools} % fixes some amsmath quirks and adds some useful settings, symbols, and environments to amsmath; essentially an extended and revised version of amsmath.
+\usepackage{empheq} % systems of equations
+\usepackage{flexisym} % Flexisym converts math­e­mat­i­cal symbol definitions to the form (macros) they need for breqn to work. 
+\usepackage{mathstyle} % If you want to use this package with amsmath, it is important mathstyle is loaded after amsmath. The current mathstyle is stored in the variable \mathstyle and is used to make he  superscript  and  subscript  operations  act  as  if  they  are  macros  taking exactly one argument (no changes in font, dropping symbols, etc).
+\usepackage{IEEEtrantools}
+\usepackage{breqn} % elaborate equation configuration; must be loaded last; NOTE: incompatible with 'newpxmath'
+
+% Customized theorem layout 
+\usepackage{aliascnt}
+
+%%% DIAGRAM DRAWING %%%
+\usepackage[all]{xy}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{external} % For plotting images offline with lazy evaluation.
+\usetikzlibrary{arrows,automata}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes,snakes}
+\usetikzlibrary{math}
+\usetikzlibrary{calc}
+\usetikzlibrary{quotes,angles}
+\usetikzlibrary{intersections}
+\usetikzlibrary{through}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{shadows}
+\usepackage{tkz-euclide}
+% \usetkzobj{all} % Macro loading files for tkz-euclide. See (https://www.ctan.org/tex-archive/macros/latex/contrib/tkz/tkz-euclide?lang=en). => Deprecated, now (2019v2) a syntax error
+% CIRCUITS
+\usepackage[europeanresistors,americaninductors]{circuitikz}
+% \usepackage{ulsy} % short circuit lightning bolts, e.g. \reflectbox{\rotatebox[origin=c]{-45}{\blitze}}; N.B. package not suppoerted any more
+% matlab2tikz figures 
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{tikz-3dplot} % Used for changing perspective in 3d plots
+\pgfplotsset{compat=newest}
+%% the following commands are needed for some matlab2tikz features
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{arrows.meta}
+\usepgfplotslibrary{patchplots}
+\usetikzlibrary{pgfplots.groupplots}
+\usepackage{grffile}
+%% you may also want the following commands
+%\pgfplotsset{plot coordinates/math parser=false}
+%\newlength\figureheight
+%\newlength\figurewidth
+
+
+%%% FIGURE PLOTING %%%
+\usepackage[siunitx,subfolder]{gnuplottex}
+\usepackage{tikzscale} % Automatic scalling of figures. Tries multiples tikz scales iterativelly, so use with the external library.
+
+%%% REFERENCING %%%
+
+% INDEX
+%\usepackage{makeidx} % Constructing index
+\usepackage{imakeidx}
+
+% TEXT LINKS
+\usepackage{url}
+\usepackage[colorlinks, linkcolor=blue, menucolor=black, hypertexnames=true, plainpages=false, pdfpagelabels]{hyperref} % backref: links back to the original reference; should be disabled for final document [backref=section]
+% To reference footnotes use \textsuperscript{\ref{foot:label}}, where foot:label is defined within the required footnote
+
+% GLOSSARY
+%\usepackage{glossary}
+%\usepackage[xindy, toc, acronyms]{glossaries} %toc, xindy; after hyperref!
+\usepackage[toc,sort=def]{glossaries} %toc, xindy, nomain, acronyms; after hyperref!
+
+% CROSSREFERENCE
+\usepackage{cleveref} % Use for cross-referencing.
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\providecommand{\definitionautorefname}{Definition}
+\crefname{definition}{definition}{definitions}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\providecommand{\theoremautorefname}{Theorem}
+\crefname{theorem}{theorem}{theorems}
+
+\theoremstyle{plain}
+\newtheorem{assumption}{Assumption}[section]
+\providecommand{\assumptionautorefname}{Assumption}
+\crefname{assumption}{assumption}{assumptions}
+
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+\providecommand{\lemmaautorefname}{Lemma}
+\crefname{lemma}{lemma}{lemmas}
+
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+\providecommand{\propositionautorefname}{Proposition}
+\crefname{proposition}{proposition}{propositions}
+
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
+\providecommand{\corollaryautorefname}{Corollary}
+\crefname{corollary}{corollary}{corollaries}
+
+\theoremstyle{remark}
+\newtheorem*{problem}{Problem}
+
+\newtheorem{remark}{Remark}[section]
+\newtheorem{remarks}[remark]{Remarks}
+
+\newtheorem{example}{Example}[section]
+
+% Add autoref/cleveref labels
+\newcommand{\algorithmautorefname}{Algorithm}
+\crefname{algorithm}{algorithm}{algorithms}
+\addto\extrasenglish{
+	\renewcommand{\equationautorefname}{Relation}
+	\crefname{equation}{relation}{relations}
+}
+
+\newenvironment{process}
+{
+	\begin{flushleft} \sffamily
+	\addtolength{\leftskip}{1in}
+}
+{\end{flushleft}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BibTeX/BibLaTeX formats %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \usepackage[sorting=none, backend=biber, backref=true, hyperref=true]{biblatex} %backend=bibtex8, style=ieee, citestyle=numeric-comp, doi=false, isbn=false, url=false, eprint=false
+\usepackage[style=ieee, backend=biber, backref=false, doi=false, hyperref=true, isbn=false]{biblatex} %backend=bibtex8, sorting=none, citestyle=numeric-comp, doi=false, isbn=false, url=false, eprint=false
+
+%\usepackage{multibbl}
+%\usepackage[resetlabels]{multibib}
+%\usepackage{natbib}
+%\usepackage{filecontents}
+%\usepackage[sectionbib]{chapterbib} %\usepackage{bibunits}
+%\usepackage{csquotes} % Needed for biblatex
+%\usepackage[firstinits=true, isbn=false, style=numeric]{biblatex} % Modern bibliography facilities
+
+%%%%%%%%%%%%%%%%%%%%%
+%% Custom commands %%
+%%%%%%%%%%%%%%%%%%%%%
+
+% Customized equation references
+\newcommand{\leqref}[2][]{equation (\ref#1{#2})}
+\newcommand{\seqref}[2][]{(\ref#1{#2})}
+
+%%%% TEXT SHORTCUTS %%%%
+\newcommand{\ie}{{\it i.e.}}
+\newcommand{\etal}{{\it et al.}}
+\newcommand{\eg}{{\it e.g.}}
+
+%%%% CUSTOM SHORTCUTS %%%%
+\newcommand{\op}[1]{\operatorname{#1}} % operator names
+\newcommand{\opit}[1]{\op{\mathit{#1}}} % operator italic names
+\newcommand{\conj}[0]{\medspace}
+
+%%%% ARRAY COLUMN SEPARATION %%%%
+% An array with the same column separation as align.
+\newenvironment{alignarray}[1]
+{
+	\begingroup
+	\setlength\arraycolsep{1.4pt}
+	\begin{array}{#1}
+}
+{
+	\end{array}
+	\endgroup
+}
+
+% This is how you can change pre-defined commands
+%\renewcommand{\algorithmicrequire}{\textbf{INPUT:}}
+%\renewcommand{\algorithmicensure}{\textbf{OUTPUT:}}
+
+% Define a command without calling an error if it is already defined:
+% \providecommand instead of \newcommand
+
+%%%% CUSTOM SYMBOLS AND OPERATORS %%%%
+% 0. probability
+\providecommand{\prob}{\mathbb{P}}
+% 0.1) Independence symbol
+\newcommand{\independent}{\mathbin{\scalebox{1}[1.4]{\rotatebox[origin=c]{90}{$\models$}}}}
+
+% 1. expectation
+\providecommand{\Expct}{ \operatorname{\mathbb{E}} }
+\providecommand{\ExpctPm}[1]{\operatorname{ \mathbb{E}_{#1}} }
+
+% 2. differential
+\providecommand{\ud}{\,\mathrm{d}}
+\providecommand{\dif}[1]{\,\mathrm{d} #1}
+%\newcommand{\der}[1]{\mathrm{d} #1}
+
+% 3. matrix
+%\providecommand{\mtx}[1]{\mathrm{#1}}
+
+% 4. measures
+%% a. absolute value
+\providecommand{\abs}[1]{\left\lvert #1 \right\rvert}
+%% b. norm
+\providecommand{\norm}[1]{\left\lVert #1 \right\rVert}
+%% c. signed norm
+\providecommand{\snorm}[1]{\left\lceil #1 \right\rfloor}
+
+% 5. partial derivative
+\providecommand{\pdrv}[1]{\operatorname{\frac{\partial}{\partial #1}}}
+
+% 6. Fields
+\providecommand{\field}[1]{\mathbb{#1}}
+\providecommand{\F}{\field{F}}
+
+% 7. Nice empty set
+\newcommand{\pxempty}{\not\medcirc} % \varnothing
+
+% 8. Nice math hyphen
+\mathchardef\mathyphen="2D
+
+% Delimiter for function calls (remove the space between the parenthesis and the function identifier)
+\newcommand{\fcnleft}{\mathopen{}\mathclose\bgroup\left}
+\newcommand{\fcnright}{\aftergroup\egroup\right}
+
+%%%% LAYOUT COMMANDS %%%%
+% 1. Breakable symbol:
+\newcommand{\br}[1][]{#1 \linebreak[0]}
+% 2. Breakable comma
+\newcommand{\cc}{, \linebreak[0]}
