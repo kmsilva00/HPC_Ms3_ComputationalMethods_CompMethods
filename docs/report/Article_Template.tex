@@ -1,0 +1,71 @@
+\documentclass[english, a4paper]{article}
+
+\usepackage{StyleFile}
+\usepackage{LayoutFile}
+
+\newcommand{\makeDiagramPath}[1]{Resources/Diagrams/#1}
+\tikzexternalize[prefix=build/_scratch_/tikz/] % Note: doesn't readily work with circuitkz
+% Name with: \tikzsetnextfilename{<fig_file_name>}
+%\tikzset{external/mode=graphics if exists} % Do not recompile if figure is present, without checking for changes. 
+\NewDocumentEnvironment{dataplot}{mm}{\graphicspath{{Resources/Plots/#1/}} \input{Resources/Plots/#1/#2}}{}
+
+\addbibresource{references.bib}
+
+\begin{document}
+\graphicspath{{Resources/Images/}{Resources/Diagrams/}}
+
+\onehalfspacing
+\pagenumbering{roman}
+
+\title{Title}
+\author{Georgios A. Kafanas}
+\date{\today}
+
+\maketitle
+
+\begin{abstract}
+Smth.
+\end{abstract}
+
+\thispagestyle{empty}
+\restoregeometry
+
+\clearpage
+
+\tableofcontents
+\listoffigures
+\listoftables
+\listofalgorithms
+
+\clearpage
+
+\pagenumbering{arabic}
+%\begin{multicols}{2}
+
+\section{Introduction}
+
+Lorem ipsum dolor sit amet, dolores suscipit no est, partem doming no pri. Labores aliquando scribentur ne qui, et stet meis labitur sit. Ea his altera eirmod. Eu dicat \cref{Eq:simple} saperet per, dicant blandit ad mea, ea case tantas consequat eos. Ne ignota iisque necessitatibus mea. Tritani eripuit vocibus has ea, quem disputando an eos.
+
+Fastidii perfecto pri no \cite{Davidson2010}. Sed te dicta laoreet adipiscing, id mei illum mediocrem cotidieque. Agam vide appareat mea ex, noster delectus te nec. Commune tacimates electram ad per \cite{Ackermann1998}. Sed posse dolore hendrerit ex, numquam inciderint mel no. In facilisis iracundia scriptorem eum, perfecto pericula erroribus id duo.
+
+\begin{equation} \label{Eq:simple}
+	1+1=2
+\end{equation}
+
+\phantomsection % Command of the hyperref package
+\addcontentsline{toc}{section}{Bibliography}
+\printbibliography[title={References}] % heading=subbibliography
+%\bibliography{references}
+%\bibliographystyle{ieeetr}
+
+\appendix
+\appendixpage
+\addappheadtotoc
+
+\section{Introduction} \label{A:Introduction}
+
+smth.
+%\lstinputlisting[language=Matlab, breaklines=true, morekeywords={matlab2tikz}, basicstyle=\small\ttfamily, commentstyle=\usefont{T1}{pcr}{m}{sl}\small]{Source/code.m}
+
+%\end{multicols}
+\end{document}
